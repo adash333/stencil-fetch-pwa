@@ -1,0 +1,10 @@
+ion-footer {
+  padding: 10px;
+  font-size: 0.7em;
+  color: #474747;
+  background-color: #f6f6f6;
+}
+
+app-add-holding ion-item {
+  background: #fff;
+}

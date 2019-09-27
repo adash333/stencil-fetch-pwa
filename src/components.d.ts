@@ -9,26 +9,24 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface AppAddHolding {}
   interface AppHome {}
-  interface AppProfile {
-    'name': string;
-  }
   interface AppRoot {}
 }
 
 declare global {
 
 
+  interface HTMLAppAddHoldingElement extends Components.AppAddHolding, HTMLStencilElement {}
+  var HTMLAppAddHoldingElement: {
+    prototype: HTMLAppAddHoldingElement;
+    new (): HTMLAppAddHoldingElement;
+  };
+
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
   var HTMLAppHomeElement: {
     prototype: HTMLAppHomeElement;
     new (): HTMLAppHomeElement;
-  };
-
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
   };
 
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
@@ -37,22 +35,20 @@ declare global {
     new (): HTMLAppRootElement;
   };
   interface HTMLElementTagNameMap {
+    'app-add-holding': HTMLAppAddHoldingElement;
     'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface AppAddHolding extends JSXBase.HTMLAttributes<HTMLAppAddHoldingElement> {}
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {}
-  interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
-    'name'?: string;
-  }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
 
   interface IntrinsicElements {
+    'app-add-holding': AppAddHolding;
     'app-home': AppHome;
-    'app-profile': AppProfile;
     'app-root': AppRoot;
   }
 }

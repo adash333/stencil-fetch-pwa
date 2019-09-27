@@ -78,6 +78,11 @@ export class AppHome {
       <ion-header>
         <ion-toolbar color="primary">
           <ion-title>BitCoin PWA</ion-title>
+          <ion-buttons slot="end">
+            <ion-button href="/add-holding" routerDirection="forward">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </ion-toolbar>
       </ion-header>,
 
