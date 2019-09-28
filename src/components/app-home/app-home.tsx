@@ -1,4 +1,5 @@
 import { Component, State, h } from '@stencil/core';
+import { Holdings } from "../../services/holdings";
 
 // interfaceで連想配列Holdingの中身の型の定義を行う
 // value? は値が存在しなくてもよいという意味？
@@ -14,12 +15,14 @@ interface Holding {
   styleUrl: 'app-home.css'
 })
 export class AppHome {
+  private holdingsService: Holdings = new Holdings();
 
   // Stencilでは変更される可能性のあるデータを@State()で定義する
   @State() holdings: Holding[] = [];
 
   componentWillLoad() {
     // ダミーデータを投入、後で、http通信でデータを取り込む
+    /*
     this.holdings = [
       {
         crypto: "BTC",
@@ -40,6 +43,14 @@ export class AppHome {
         value: 103555.223423
       }
     ]
+    */
+   const router = document.querySelector("ion-router");
+
+   // Reflesh data every time view is entered
+   router.addEventListener("ionRouteDidChange", async () => {
+     const holdings = await this.holdingsService.getHoldings();
+     this.holdings = [...holdings];
+   });
   }
 
   renderWelcomeMessage() {

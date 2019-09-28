@@ -1,23 +1,34 @@
 import { Component, h } from "@stencil/core";
+import { Holdings } from "../../services/holdings";
 
 @Component({
   tag: "app-add-holding",
   styleUrl: "app-add-holding.css"
 })
 export class AppAddHolding {
+  private holdingsService: Holdings = new Holdings();
   private cryptoCode: string;
   private displayCurrency: string;
   private amountHolding: number;
 
-  addHolding() {
+  async addHolding() {
     let holding = {
       crypto: this.cryptoCode,
       currency: this.displayCurrency,
       amount: this.amountHolding || 0
     };
 
-    console.log(holding);
     // todo: handle adding holding
+    let result = await this.holdingsService.fetchPrice(holding);
+    console.log(result);
+
+    if (result.success) {
+      await this.holdingsService.addHolding(holding);
+    }
+
+    const navCtrl = document.querySelector("ion-router");
+    navCtrl.back();
+    
   }
 
   changeValue(ev) {
