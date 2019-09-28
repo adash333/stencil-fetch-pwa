@@ -50,7 +50,7 @@ export class AppHome {
    router.addEventListener("ionRouteDidChange", async () => {
      const holdings = await this.holdingsService.getHoldings();
      this.holdings = [...holdings];
-   });
+   })
   }
 
   renderWelcomeMessage() {
@@ -97,7 +97,7 @@ export class AppHome {
         </ion-toolbar>
       </ion-header>,
 
-      <ion-content>
+      <ion-content class="ion-padding">
         {this.renderWelcomeMessage()}
         <ion-list lines="none">
           {this.holdings.map(holding => (
